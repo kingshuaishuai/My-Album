@@ -1,0 +1,593 @@
+body,
+header,
+ul,
+li,
+p,
+div,
+html,
+span,
+h3,
+a,
+blockquote {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+ul,li{
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+
+img{
+    display: inline-block;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+header {
+    height: 60px;
+    line-height: 60px;
+}
+header>.container{
+    overflow: hidden;
+}
+
+header>.container .user_right{
+    float: right
+}
+header>.container .user_right .active{
+    color: #4cdbc4;
+    background: #fff;
+    border: 1px solid #4cdbc4;
+    box-shadow: 0 5px 5px #ccc;
+}
+header .container .user_name {
+    height: 60px;
+    float: left
+}
+header>.container .user_name img{
+    vertical-align: middle;
+}
+header>.container .user_name span{
+    display: inline-block;
+    line-height: 60px;
+}
+
+.user_name {
+    font-size: 20px;
+}
+
+
+header .container .user_name {
+    float: left;
+    overflow: hidden;
+}
+
+.login_avator{
+    width: 60px;
+    height: 60px;
+    display: inline;
+}
+.logo {
+    text-align: center;
+}
+
+.has_user a,
+.has_user span,
+.none_user a {
+    padding: 5px 15px;
+    background: #4cdbc4;
+    border-radius: 15px;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #fff;
+    transition: all 0.3s;
+}
+
+.has_user a:hover,.has_user span:hover{
+    color: #4cdbc4;
+    background: #fff;
+    border: 1px solid #4cdbc4;
+    box-shadow: 0 5px 5px #ccc;
+}
+.submit {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 4px;
+    background: #4cdbc4;
+    cursor: pointer;
+    color: #fff;
+    float: left;
+    margin-top: 20px ;
+    border:1px solid #fff;
+}
+.submit:hover{
+    background: #fff;
+    color: #4cdbc4;
+    border:1px solid #4cdbc4;
+}
+.form {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 20px;
+}
+
+/*textarea {
+    width: 100%;
+    height: 150px;
+    padding:10px 0 0 10px;
+    font-size: 20px;
+    border-radius: 4px;   
+	border: 1px solid #d7dde4;
+    -webkit-appearance: none;
+    resize: none;
+}
+
+textarea#spContent{
+    width: 98%;
+}
+*/
+.tips {
+    margin: 20px 0;
+    color: #ec5051;
+    text-align: center;
+}
+
+.form img.preview {
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    display: none;
+    margin-top:10px;
+}
+.form input {
+    display: block;
+    width: 100%;
+    height: 35px;
+    font-size: 18px;
+    padding: 6px 7px;	
+	border-radius: 4px;   
+	border: 1px solid #d7dde4;
+	-webkit-appearance: none;
+}
+
+.form input:focus,textarea:focus{
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(51,153,255,.2);
+    border-color: #5cadff;
+}
+
+.form input:hover,input:active,textarea:hover,textarea:active{
+    border-color: #5cadff;
+}
+
+.create label {
+    display: block;
+    margin: 10px 0;
+}
+
+.comment_wrap form {
+    width: 100%;
+    margin-bottom: 85px;
+}
+
+.delete_comment,
+.delete_post {
+    cursor: pointer;
+}
+
+.delete_comment:hover,
+.delete_post:hover,
+a:hover {
+    color: #ec5051;
+}
+.disabled{
+    user-select: none;
+    cursor: not-allowed !important;
+}
+.error{
+    color: #ec5051;
+}
+.success{
+    color: #1E9FFF;
+}
+
+.message{
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 99999;
+}
+.markdown pre{
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #F0F0F0;
+    border-radius: 3px;
+    border: 1px solid #fff;
+}
+.markdown blockquote{
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+    margin: 10px 0;
+}
+.markdown ul li{
+    list-style: circle;
+    margin-top: 5px;
+}
+
+footer {
+    width: 100%;
+    padding-top: 50px;
+    height: 100px;
+    bottom: 0;
+}
+footer .footer-content p{
+    line-height: 100px;
+    /*background-color: #4cdbc4;*/
+    color: #555;
+    text-align: center;
+}
+
+.panel{
+    width: 800px;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #4cdbc4;
+    margin-top: 50px;
+    float: right;
+}
+.info-title{
+    text-align: center;
+    color: #4cdbc4;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #4cdbc4;
+}
+.info-center > .item{
+    height: 36px;
+    line-height: 36px;
+}
+.info-center > .item > span {
+    display: inline-block;
+    padding: 0 10px;
+}
+.info-center > .item > .item-title{
+    width: 100px;
+}
+.info-btn{
+    width: 120px;
+    height: 34px;
+    border: 1px solid #4cdbc4;
+    padding: 5px 15px;
+    border-radius: 17px;
+    background-color: #4cdbc4;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 30px;
+}
+.info-edit {
+    height: 50px;
+    line-height: 50px;
+}
+.info-btn:hover{
+    background-color: #fff;
+    color: #4cdbc4;
+}
+/*修改个人信息*/
+.change-info{
+    width: 800px;
+    margin: 0 auto;
+/*          border: 1px solid #4cdbc4;
+*/          overflow: hidden;
+    border-radius: 5px;
+    padding: 10px;
+}
+.change-info .change-title{
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #4cdbc4;
+    font-weight: 700;
+    text-align: center;
+}
+.tb-introduce>.intro-desc{
+    vertical-align: top;
+    width: 500px;
+    height: 160px;
+    overflow: auto;
+}
+.cgform.change{
+    margin-top: 36px;
+}
+.cgform.change div{
+    height: 50px;
+    line-height: 50px;
+}
+.cgform.change div>label{
+    display: inline-block;
+    width: 100px;
+}
+.cgform.change>.tb-introduce{
+    overflow: hidden;
+    height: 170px;
+}
+.tb-input{
+    width: 300px;
+    height: 36px;
+}
+.tb-border{
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+.tb-border:focus{
+    border: 1px solid #4cdbc4;
+    outline: none;
+}
+.tb_radio{
+    padding: 0;
+    background-color: #4cdbc4;
+}
+.tb-input:active{
+    border: 1px solid #4cdbc4;
+}
+.tb-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    width: 120px;
+    height: 36px;
+    border: 1px solid #4cdbc4;
+    cursor: pointer;
+    font-size: 16px;
+    vertical-align: middle;
+    line-height: 24px;
+    text-align: center;
+}
+.tb-btn:hover{
+    background-color: #a6ede2;
+    color: #fff;
+}
+.tb-btn:active{
+    outline: none;
+    border:1px solid #4cdbc4;
+    background-color: #4cdbc4;
+    color: #fff;
+}
+/*侧边导航*/
+
+.side-menu{
+    width: 380px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #ddd;
+    float: left;
+    margin-top: 50px;
+}
+.side-menu>div{
+    width: 300px;
+    height: 40px;
+    margin: 10px auto;
+    line-height: 40px;
+    text-align: center;
+}
+.side-menu>div>a{
+    background-color: #4cdbc4;
+    border-radius: 5px;
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: #333;
+    color: #fff;
+}
+.side-menu>div>a:hover{
+    background-color: #4CDBA4;
+}
+
+/*照片展示*/
+.photo-show{
+    width: 800px;
+    overflow: hidden;
+    margin-top
+}
+.photo-show>.photo-content{
+    margin-top: 50px;
+    padding: 10px;
+    overflow: hidden;
+}
+.photo-show>.photo-content>.photo-item{
+    float: left;
+    width: 180px;
+    height: 240px;
+    overflow: hidden;
+    margin: 7px;
+    box-shadow: 10px 10px 20px #ccc;
+}
+.photo-show>.photo-content>.photo-item>img{
+    width: 180px;
+    /*height: 270px;*/
+    border-radius: 5px;
+}
+
+/*上传照片*/
+
+.upload-form{
+    padding-top: 50px;
+    width: 450px;
+    margin: 0 auto;
+}
+.upload-form>.upload-item{
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+.upload-form>.upload-item>label{
+    width: 80px;
+    display: inline-block;
+}
+.upload-form>.upload-item>.item-con{
+    width: 365px;
+}
+.upload-form>.img-name>input{
+    width: 300px;
+    height: 36px;
+}
+.upload-form>.select-img{
+    line-height: 100px;
+}
+.upload-form>.select-img>input{
+    display: none;
+}
+/*.upload-form>.select-img>.virtual-select{
+    display: inline-block;
+    background-color: #d00;
+    width: 100px;
+    height: 100px;
+}*/
+
+.upload-form>.select-img>.preview{
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    border: none;
+    outline: none;
+}
+.upload-form>.select-img>.virtual-select{
+    vertical-align: top;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    line-height: 100px;
+    text-align: center;
+    border: 2px dashed #4cdbc4;
+}
+.upload-form>.select-img>.virtual-select::before{
+    content: "";
+    display: inline-block;
+    width: 100px;
+    border-top: 2px dashed #4cdbc4;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.upload-form>.select-img>.virtual-select::after{
+    content: "";
+    display: inline-block;
+    height: 100px;
+    border-left: 2px dashed #4cdbc4;
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+.upload-form>.upload-btn>.btn-left{
+    float: left;
+}
+.upload-form>.upload-btn>.btn-right{
+    float: right;
+}
+.pass-result{
+    text-align: center;
+    width: 400px;
+    margin: 50px auto;
+    border: 1px solid #4cdbc4;
+    padding-bottom: 20px;
+}
+.pass-result>.pass-title{
+    height: 40px;
+    line-height: 40px;
+    background-color: #4cdbc4;
+    color: #fff;
+    font-weight: 700;
+}
+.pass-result>.pass-con{
+    line-height: 40px;
+    height: 40px;
+}
+
+/*管理员*/
+.admin{
+    width: 1000px;
+    border: 1px solid #4cdbc4;
+    margin: 50px auto 0;
+    max-height: 600px;
+    overflow: auto;
+}
+.admin-title{
+    height: 40px;
+    line-height: 40px;
+    background-color: #4cdbc4;
+    color: #333;
+    padding: 0 10px;
+    overflow: hidden;
+}
+.admin-title>.tit-con{
+    font-weight: 700;
+    float: left;
+}
+.admin-title>.back-btn{
+    float: right;
+    margin-top: 2px;
+}
+.admin-title>.back-btn:active{
+    background-color: #a6ede2;
+}
+.user-item{
+    color: #333;
+    overflow: hidden;
+    border-bottom: 1px solid #4cdbc4;
+}
+.user-item>.detail-info{
+    float: left;
+    line-height: 36px;
+    width: 850px;
+    height: 72px;
+}
+.user-item>.detail-info span{
+    padding: 5px;
+}
+.user-item>.detail-info .item-con{
+    color: #4cdbc4;
+}
+.user-item>.item-btns{
+    float: right;
+    text-align: center;
+    width: 130px;
+    line-height: 72px;
+}
+.user-item>.detail-info>.first{
+    
+}

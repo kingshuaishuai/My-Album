@@ -1,0 +1,109 @@
+<%- include("header",{type:'signin'}) %>
+<div class="change-info">
+	<div class="change-title">
+		编辑
+	</div>
+	<form class="cgform change" method="post">
+		<div class="tb-username">
+			<label>username</label>：
+			<input class="tb-input tb-border" type="text" name="username" value="<%- session.username %>" readOnly=true>
+		</div>
+		<div class="tb-realname">
+			<label>真实姓名</label>： 
+			<input class="tb-input tb-border" placeholder="请输入真实姓名" type="text" name="realname" value="<%- session.realname %>">
+		</div>
+		<div class="tb-gender">
+			<label>性别</label>： 
+			<input class="tb_radio" 
+				   type="radio" 
+				   name="gender" 
+				   value="0" 
+				   <% if(session.gender == 0){ %>
+				   		checked="checked"
+				   <%}%>
+
+				>保密
+			<input class="tb_radio" 
+				   type="radio" 
+				   name="gender" 
+				   value="1"
+				   <% if(session.gender == 1){ %>
+				   		checked="checked"
+				   <%}%>
+				   >男
+			<input type="radio" 
+				   name="gender" 
+				   value="2"
+				   <% if(session.gender == 2){ %>
+				   		checked="checked"
+				   <%}%>
+				   >女
+		</div>
+		<div class="tb-age">
+			<label>年龄</label>： 
+			<select class="tb-border" name="age">
+				<% for(var i = 0;i<151;i++){ %>
+					<%if(session.age==i){%>
+						<option value="<%- i %>" selected="selected"><%- i %></option>
+					<%}else {%>
+						<option value="<%- i %>"><%- i %></option>
+					<%}%>
+				<%}%>
+			</select>
+		</div>
+
+		<div class="tb-introduce">
+			<label class="intro">自我介绍</label>： 
+			<textarea class="intro-desc tb-border" name="introduce" ><%-session.introduce%></textarea>
+		</div>
+		<input type="hidden" name="user_id" value="<%- session.user_id %>">
+		<div class="tb-submit">
+			<input class="tb-border tb-btn saveinfo" value="保存">
+			<a class="tb-btn tb-border" href="/myinfo">返回</a>
+		</div>
+	</form>
+</div>
+
+
+<script>
+	$()
+	$('.saveinfo').click(function(){
+		if($('input[name=realname]').val().trim() == '') {
+			fade('请填写真实姓名');
+		}else if($('.intro-desc').val().trim() == '') {
+			fade('小宝贝写点个人介绍吧');
+		}else {
+			$.ajax({
+				url: "/changeinfo",
+				data: {
+					username: $('input[name=username]').val() , 
+					realname: $('input[name=realname]').val().trim() , 
+					gender: $("input[name='gender']:checked").val(),
+					age: $('select[name=age]').val() , 
+					introduce: $('textarea[name=introduce]').val().trim() , 
+					user_id: $('input[name=user_id]').val()
+				},
+				type: "POST",
+				cache: false,
+				dataType: 'json',
+				success: function (msg) {
+					if(msg.code == 200) {
+						fade('新信息保存成功');
+						setTimeout(function(){
+							window.location.href = "/myinfo"
+						}, 1000);
+					}else {
+						fade(msg.message);
+					}
+				},
+				error: function (){
+					alert('异常');
+				}
+			});
+			// console.log("hello world");
+		}
+	});
+
+</script>
+
+<% include footer %>

@@ -1,0 +1,30 @@
+{
+  "name": "users-mangement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "run": "supervisor --harmony index"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "ejs": "^2.6.1",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-mysql-session": "0.0.2",
+    "koa-router": "^7.4.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa-static": "^5.0.0",
+    "koa-static-cache": "^5.1.2",
+    "koa-views": "^6.1.5",
+    "markdown-it": "^8.4.2",
+    "md5": "^2.2.1",
+    "mocha": "^5.2.0",
+    "moment": "^2.23.0",
+    "mysql": "^2.16.0"
+  }
+}

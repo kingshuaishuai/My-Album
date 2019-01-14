@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Album</title>
+	<link rel="icon" href="/icon/icon.png">
+	<link rel="stylesheet" href="/index.css">
+
+	<script src="/js/jquery.min.js"></script>
+	<script>
+		function fade(txt){
+			$('.message').text(txt)
+			$('.message').animate({
+				top:0
+			});
+			setTimeout(function(){
+				$('.message').animate({
+					top: '-100%'
+				})
+			},1500);
+		}
+		$(function(){
+			$('.signout').click(function(){
+				$.ajax({
+					url: "/signout",
+					type: "GET",
+					cache: false,
+					dataType: 'json',
+					success: function (msg) {
+						if (msg) {
+							fade('登出成功')
+							setTimeout(function(){
+								location.href = "/signin"
+							},1500)	
+						}
+					},
+					error: function () {
+						alert('异常');
+					}
+				});
+			});
+		})
+	</script>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="user_name">
+				<% if(session.avator) {%>
+				<img class="login_avator" src="/images/<%= session.avator %>" alt="头像">
+				<% } %>
+				<% if(session.username){ %>
+					 <span>Hello,<%= session.username %></span>
+				<% } %>
+				<% if(!session.username){ %>
+					<span>My Album</span>
+				<% } %>
+			</div>
+			<div class="message">登录成功</div>
+			<div class="user_right">
+				<%  if(session.username){ %>
+					<div class="has_user">
+						<span class="signout">登出</span>
+					</div>
+				<% } %>
+
+				<% if(!session.username){ %>
+
+					<div class="none_user has_user">
+						<!--
+
+						<a target="__blank" href="https://github.com/wclimb/Koa2-blog">GitHub</a>
+
+						 -->
+
+						<% if(type == 'signup'){ %>
+							<a class="active" href="/signup">注册</a>
+						<% }else{ %>
+							<a href="/signup">注册</a>
+						<% }%>
+
+						<% if(type == 'signin'){ %>
+							<a class="active" href="/signin">登录</a>
+						<% }else{ %>
+							<a href="/signin">登录</a>
+						<% }%>
+
+					</div>
+
+				<% } %>
+
+			</div>
+		</div>
+
+	</header>

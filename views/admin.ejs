@@ -1,0 +1,138 @@
+<%- include("header",{type:'signin'}) %>
+<div class="container">
+	尊敬的管理员您好
+	<div class="admin">
+		<div class="admin-title">
+			<span class="tit-con">所有会员信息</span>
+			<a class="tb-border tb-btn back-btn" href="/myinfo">返回</a>
+		</div>
+		<div class="users-list">
+		<%for(var i = 0;i < users.length; i++){%>
+				<div class="user-item">
+					<div class="detail-info">
+						<div class="first">
+							<span class="item-tit">用户id:</span><span class="item-con"><%-users[i].user_id%></span>
+							<span class="item-tit">用户名:</span><span class="item-con"><%-users[i].username%></span>
+							<span class="item-tit">真实姓名:</span><span class="item-con"><%-users[i].realname%></span>
+							<span class="item-tit">年龄:</span><span class="item-con"><%-users[i].age%></span>
+							<span class="item-tit">性别:</span><span class="item-con">
+								<%if(users[i].gender==0){%>
+									保密
+								<%}else if(users[i].gender==1){%>
+									男
+								<%}else if(users[i].gender==2){%>
+									女
+								<%}else {%>
+									不知道是个什么东西
+								<%}%>
+							</span>
+							<span class="item-tit">角色:</span><span class="item-con">
+								<%if(users[i].role==0){%>
+									会员
+								<%}else if(users[i].role==1){%>
+									管理员
+								<%}else if(users[i].role==2){%>
+									超级管理员
+								<%}else {%>
+									不知道是个什么东西
+								<%}%>
+							</span>				
+						</div>
+						<div class="second">
+							<span class="item-tit">MD5加密后密码:</span><span class="item-con"><%-users[i].password%></span>
+							<span class="item-tit">加入日期:</span><span class="item-con"><%-users[i].create_time%></span>
+						</div>
+					</div>
+					<%if(session.role==2 && users[i].user_id!=session.user_id){%>
+						<div class="item-btns">
+							<% if (users[i].role == 0) { %>
+								<button class="tb-border tb-btn set-admin" data-userid=<%-users[i].user_id%>>设为管理</button>
+							<% } else if(users[i].role==1){ %>
+								<button class="tb-border tb-btn cancel-admin" data-userid=<%-users[i].user_id%>>取消管理</button>
+								
+							<% } %>
+							
+						</div>
+					<%}%>
+
+				</div>
+		<%}%>
+		</div>
+	</div>
+</div>
+
+<script>
+	// console.log($('.set-admin'));
+	$('.set-admin').click(function(){
+		console.log($(this));
+		var data = $(this).data('userid');
+		console.log('userid',typeof(data));
+
+		if(typeof data!== 'number'){
+			fade('操作异常');
+		}else{
+			$.ajax({
+				url: "/admin",
+				data: {
+					role: 1,
+					user_id: data,
+				},
+				type: "POST",
+				cache: false,
+				dataType: 'json',
+				success: function (msg) {
+					if(msg.code == 200) {
+						fade('设置成功');
+						setTimeout(function(){
+							window.location.href = "/admin";
+						}, 1000);
+					}else {
+						fade('设置失败');
+					}
+				},
+				error: function () {
+					alert('异常');
+				}
+
+			});
+		}
+
+	});
+
+	$('.cancel-admin').click(function(){
+		console.log($(this));
+		var data = $(this).data('userid');
+		console.log('userid',typeof(data));
+
+		if(typeof data!== 'number'){
+			fade('操作异常');
+		}else{
+			$.ajax({
+				url: "/admin",
+				data: {
+					role: 0,
+					user_id: data,
+				},
+				type: "POST",
+				cache: false,
+				dataType: 'json',
+				success: function (msg) {
+					if(msg.code == 200) {
+						fade('设置成功');
+						setTimeout(function(){
+							window.location.href = "/admin";
+						}, 1000);
+					}else {
+						fade('设置失败');
+					}
+				},
+				error: function () {
+					alert('异常');
+				}
+
+			});
+		}
+
+	});
+</script>
+<% include footer %>

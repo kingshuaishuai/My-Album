@@ -1,0 +1,86 @@
+<%- include("header",{type:'signin'}) %>
+<div class="container">
+	<div class="side-menu">
+		<div class="side-myinfo"><a href="/myinfo">个人中心</a></div>
+		<div class="side-changeinfo"><a href="/changeinfo">编辑信息</a></div>
+		<div class="side-myinfo"><a href="/myalbum">My Album</a></div>
+		<div class="side-myinfo"><a href="/viewpassword">查询加密后的密码</a></div>
+		<%if(session.role>0){%>
+		<div class="side-myinfo"><a href="/admin">管理员</a></div>
+		<%}%>
+	</div>
+	<div class="panel">
+		<div class="info-title">
+			<span>个人中心</span>
+		</div>
+		<div class="info-center">
+			<div class="item">
+				<span class="item-title">用户名</span>:
+				<span class="item-con"><%- session.username %></span>
+			</div>
+			<div class="item">
+				<span class="item-title">真实姓名</span>:
+				<span class="item-con">
+					<% if(session.realname){%>
+				 	<%= session.realname %>
+					<% } else {%>
+					小可爱，写个真名好不好
+					<% } %>	
+				</span>
+			</div>
+			<div class="item">
+				<span class="item-title">性别</span>:
+				<span class="item-con">
+					<% if(session.gender == 0) {%>
+						保密
+					<% } else if(session.gender == 1){%>
+						男
+					<% } else if(session.gender == 2){%>
+						女
+					<% } else {%>
+						你是个什么物种
+					<% } %>
+				</span>
+			</div>
+			<div class="item">
+				<span class="item-title">年龄</span>:
+				<span class="item-con"><%- session.age %></span>
+			</div>
+			<div class="item">
+				<span class="item-title">角色</span>:
+				<span class="item-con">
+					<% if(session.role == 0) {%>
+						会员
+					<% } else if(session.role == 1){%>
+						管理员
+					<% } else if(session.role == 2){%>
+						超级管理员
+					<% } else {%>
+						你是怎么登进来的
+					<% } %>
+				</span>
+			</div>
+			<div class="item">
+				<span class="item-title">个人介绍</span>:
+				<span class="item-con">
+					<% if(session.introduce){%>
+				 	<%= session.introduce %>
+					<% } else {%>
+					这个人还没有自我介绍呢
+					<% } %>
+				</span>
+			</div>
+			<div class="item">
+				<span class="item-title">账号创建时间</span>:
+				<span class="item con">
+					<%= session.create_time %>
+				</span>
+			</div>
+		</div>
+		<div class="info-edit">
+			<!-- <a class="info-btn change-pass" href="#">修改密码</a> -->
+			<a class="info-btn perfect-info" href="/changeinfo">完善信息</a>
+		</div>
+	</div>
+</div>
+<% include footer %>

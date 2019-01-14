@@ -1,0 +1,105 @@
+<%- include("header",{type:'signin'}) %>
+<div class="container">
+	<div class="logo"><img src="/icon/icon.png" alt="icon"></div>
+	<form class="upload-form" method="post">
+		<div class="upload-item img-name">
+			<label>照片名称</label>
+			<input class="tb-border item-con" type="text" required="required" placeholder="填写照片名称" name="img_name">
+		</div>
+		<div class="upload-item select-img">
+			<label>选择图片</label>
+			<span class="virtual-select item-con">
+			</span>
+			<input type="file" name="img_src" id="img_src">
+			<input type="hidden" id="img_srcVal">
+			<img class="preview" alt="">
+		</div>
+<!-- 		<div class="upload-pre">
+		</div> -->
+		<input type="hidden" name="uid" value="<%-session.user_id%>">
+		<div class="upload-item upload-btn">
+			<input class="tb-border tb-btn btn-left up-submit" value="上传">
+			<a class="tb-border tb-btn btn-right" href="/myalbum">返回</a>
+		</div>
+	</form>
+</div>
+
+<script>
+	$('.virtual-select').click(function(){
+		$('.select-img>input[type=file]').click();
+	})
+	$('#img_src').change(function(){
+		if(this.files.length != 0){
+			var file = this.files[0],
+				reader = new FileReader();
+			if(!reader) {
+				this.value = '';
+				return ;
+			}
+
+			console.log(file.size,file.type);
+
+			if(!/image/g.test(file.type)) {
+				fade("请上传图片文件");
+				$('#img_srcVal').val('');
+				$('form .preview').attr('src','');
+				$('form .preview').fadeOut();
+				return;
+			}
+
+			reader.onload = function(e) {
+				this.value = '';
+				$('form .preview').attr('src', e.target.result)
+				$('form .preview').fadeIn()
+				 var image = new Image();
+				 image.onload = function(){
+					 var canvas = document.createElement('canvas');
+					 var ctx = canvas.getContext("2d");
+					 canvas.width = 100;
+					 canvas.height = 100;
+					 ctx.clearRect(0, 0, 100, 100);
+					 ctx.drawImage(image, 0, 0, 100, 100);
+					 var blob = canvas.toDataURL("image/png");
+					 $('#img_srcVal').val(blob)
+				 }
+				 image.src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		};
+	})
+
+	$('.up-submit').click(function(){
+		if($('input[name=img_name]').val().trim() == '') {
+			fade('请输入照片名称');
+		}else if($('#img_srcVal').val() == ''){
+			fade('请上传图片文件');
+		}else {
+			$.ajax({
+				url: "/uploadimg",
+				data: {
+					img_name: $('input[name=img_name]').val().trim(), 
+					img_src: $('#img_srcVal').val(), 
+					uid: $('input[name=uid]').val(),
+				},
+				type: "POST",
+				cache: false,
+				dataType: 'json',
+				success: function(msg) {
+					console.log(msg);
+					if(msg.code == 200) {
+						fade('上传成功');
+						setTimeout(function(){
+							window.location.href = "/uploadimg"
+						}, 1000);
+					}else {
+						fade(msg.message);
+					}
+				},
+				error: function() {
+					alert('异常');
+				}
+			});
+		}
+	});
+</script>
+<% include footer %>
